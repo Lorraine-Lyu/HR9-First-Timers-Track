@@ -5,47 +5,97 @@
 
 
 body {
-	height: 100px;
-  width: 250px;
+ height: 200px;
+  width: 280px;
   background-color:whitesmoke;
   align-content: center;
 }
 
+#titl {
+  font-size: 18px;
+  font-family: 'Oxygen', sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
 
+#domains {
+  font-size: 14px;
+  font-family: 'Oxygen', sans-serif;
+  font-weight: light;
+}
 #inputTime{
   align-self: center;
   margin: auto;
 }
 
-#whiteList {
-  font-size: 20px;
-  border: 1px solid grey;
-}
-
-#BlackList {
-  font-size: 20px;
-  border: 1px solid grey;
-}
-
 #time {
-  font-size: 20px;
+  font-size: 15px;
+  font-family: 'Oxygen', sans-serif;
+  width: 225px;
+  height: 40px;
   border: 1px solid grey;
+  border-radius: 5px;
   background-image: url('searchicon.png');
+  margin-bottom: 10px;
 
 }
 
-
-
-
-#ou {
-  background-color: lightsteelblue;
-  border-radius: 30px;
-  height: 30px;
-
+#btn {
+  margin: 16px;
+  margin-left: 60px;
+  background-color: dodgerblue;
+  border-radius: 10px;
+  height: 43px;
+  border: 0px;
 }
 
-
-#time {
-  width: 100px;
+#whiteList {
+  font-size: 15px;
+  font-family: 'Oxygen', sans-serif;
+  border: 1px solid grey;
+  border-radius: 5px;
+  width: 90%;
+  height: 43px;
 }
 
+#addWhite {
+  float: right;
+  margin-right: 25px;
+  margin-top: 0px;
+  font-size: 20px;
+  font-weight: bold;
+  align-content: center;
+  height: 42px;
+  width: 36px;
+  border: 1px solid grey;
+  background-color: darkgrey;
+  margin-top: -42px;
+}
+
+#addLink {
+  font-size: 14px;
+  font-family: 'Oxygen', sans-serif;
+  margin-left: 5px;
+  margin-right: 10px;
+  align-content: center;
+}
+
+.DeleteMe {
+  font-size: 14px;
+  font-family: 'Oxygen', sans-serif;
+  color: black;
+  align-content: center;
+  border-radius: 4px;
+  height: 26px;
+  width: 21%;
+  border: 0.5px solid grey;
+  background-color: gainsboro;
+  margin-left: 150px;
+}
+
+.URLs {
+  font-size: 14px;
+  font-family: 'Oxygen', sans-serif;
+  margin-top: 10px;
+  margin-bottom: -15px;
+}

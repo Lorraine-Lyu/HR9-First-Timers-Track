@@ -4,6 +4,7 @@ var time = 0;
 var lblid=0;
 
 document.addEventListener('load', loadList);
+document.addEventListener('load', checkStatus);
 document.getElementById('addWhite').addEventListener("click", addElem);
 
 function loadList() {
@@ -13,8 +14,10 @@ function loadList() {
         d.setAttribute("id", i);
         var p = document.createElement('p');
         p.innerHTML = whiteList[i];
+        p.setAttribute('class', 'URLs')
         d.appendChild(p);
         var btn = document.createElement('button');
+        btn.setAttribute('class', 'DeleteMe');
         btn.innerHTML = "-";
         btn.addEventListener("click", (event)=> {removeElem(parseInt(event.target.parentNode.id))});
         d.appendChild(btn);
@@ -25,6 +28,9 @@ function loadList() {
 
 function addElem() {
     var text = document.getElementById("whiteList").value;
+    if (text === "") {
+        return;
+    }
     document.getElementById('whiteList').value = "";
     whiteList.push(text);
     loadList();
@@ -59,4 +65,13 @@ document.getElementById("btn").addEventListener("click", (contents) => {
     port.postMessage({"purpose": "Start Timing", "time": time, "lst": whiteList});
 })
 
+function checkStatus() {
+    port.postMessage("Status");
+    port.onMessage.addListener(function(msg) {
+    console.log("message recieved" + msg);
+    if (msg === "timing") {
+        document.getElementById('dsplyWhite').innerHTML = "You have a focus in progress."
+    }
+});
+}
 
