@@ -2,25 +2,23 @@
 <html>
 <head>
 	<title>Extension Name</title>
-	
+	<link href="https://fonts.googleapis.com/css?family=Oxygen&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div class="container" style="margin: 10px">
-		<p>Focus on Chrome</p>
+		<p id="titl">Focus on Chrome</p>
 
 		<div class="form-group" id="inputTime">
-			<label for="timeLImit">Set Time Limit</label>
-			<input type="number" class="form-control" id="time">
+			<input type="number" class="form-control" id="time" placeholder="Set Time Limit (minute)">
 		</div>
 
 		<div class="form-group" id="inputWhite">
-			<label for="exampleInputPassword1">Add Links of the websites you need to work on</label>
-			<input type="text" class="form-control" id="whiteList" placeholder="Rice.edu">
+			<label for="exampleInputPassword1" id="domains">Add domains of websites you need to work on</label>
+			<input type="text" class="form-control" id="whiteList" placeholder="rice.edu">
+			<button type="button" class="btn btn-secondary" id="addWhite">+</button>
 		</div>
-
-		<button type="button" class="btn btn-secondary" id="addWhite">+</button>
 
 		<div class="dsply-group" id="dsplyWhite">
 		</div>

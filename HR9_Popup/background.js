@@ -5,11 +5,7 @@ var whiteList = ["chrome://newtab/"];
 var blackList = ["chrome://newtab/"];
 var time = 8;
 var timing = false;
-var currentUrl = "";
-var currTab = "";
-// var port = chrome.runtime.connect({
-//   name: "Popup -> Background"
-// });
+
 
 
 chrome.tabs.query({active: true}, (lst)=> {
@@ -34,10 +30,10 @@ chrome.tabs.query({active: true}, (lst)=> {
 //receiving signal from content and popup
 chrome.extension.onConnect.addListener(function(port) {
   if (port.name === "Popup -> Background") {
-    console.log("Connected to popup");
+    // console.log("Connected to popup");
     port.onMessage.addListener(function(msg) {
-      console.log('msg time: ' + msg.time)
-      console.log('time ' + parseInt(msg.time))
+      // console.log('msg time: ' + msg.time)
+      // console.log('time ' + parseInt(msg.time))
       if (msg.purpose === "Start Timing") {
           whiteList = msg.lst;
           console.log(whiteList);
@@ -46,9 +42,9 @@ chrome.extension.onConnect.addListener(function(port) {
       });
   } else if (port.name === "Content -> Background") {
     Window.toContent = port;
-    console.log("Connected to Content")
+    // console.log("Connected to Content")
     port.onMessage.addListener(function(msg) {
-      console.log('msg from Content: ' + msg)
+      // console.log('msg from Content: ' + msg)
       if (msg === "Terminate") {
         timing = false;
         alert("Focus Terminated");
@@ -86,7 +82,7 @@ chrome.tabs.onActivated.addListener(function() {
     chrome.tabs.query({active: true}, (lst)=> {
       var curr = lst[0].url;
       if (matchUrl(curr)) {
-        console.log("activated : "+curr); 
+        // console.log("activated : "+curr); 
         // sendMsgToContent(lst[0].id);
         Window.toContent.postMessage("From Background"); 
       }
@@ -94,23 +90,6 @@ chrome.tabs.onActivated.addListener(function() {
     })
   }
 })
-
-
-// chrome.runtime.onMessage.addListener(
-//   function(request, sender, sendResponse) {
-//     console.log(sender.tab ?
-//                 "from a content script:" + sender.tab.url :
-//                 "from the extension");
-//     console.log(request);
-//     if (request.greeting == "hello")
-//       sendResponse({farewell: "goodbye"});
-//   });
-
-// chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//   chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
-//     console.log(response);
-//   });
-// });
 
 //===============================utils=================================
 
@@ -124,22 +103,10 @@ function setTime(time) {
 }
 
 function matchUrl(url) {
-  for (str in whiteList) {
-    if (str.includes(url)) {
+  for (str of whiteList) {
+    if (url.includes(str)) {
       return false;
     }
   }
   return true;
-}
-
-function sendMsgToContent(id) {
-  return new Promise((resolve, reject) => {
-    chrome.tabs.sendMessage(id, {meg: "From Background"}, function(response) {
-      if (response != undefined) {
-        resolve(response)} else {
-          reject(response);
-        }
-      })
-  
-}).catch((err)=> {console.log(err)})
 }
